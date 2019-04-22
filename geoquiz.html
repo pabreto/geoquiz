@@ -80,13 +80,18 @@
 				initializeClock('clockdiv', deadline);
 			}
 			
-		   function random_letter(){
-				var letter = new String.fromCharCode(65+Math.floor(Math.random() * 26));
-				return {
-					'letter':letter,
-				}
+		   function random_letter(id){
+				let letter = String.fromCharCode(Math.floor((Math.random() * 25) + 65));
+				document.write(letter);
 		   }
 		   
+		   function get_distance(ville1, ville2) {
+				dlon = lon2 - lon1 
+				dlat = lat2 - lat1 
+				a = (sin(dlat/2))^2 + cos(lat1) * cos(lat2) * (sin(dlon/2))^2 
+				c = 2 * atan2( sqrt(a), sqrt(1-a) ) 
+				d = R * c (where R is the radius of the Earth)
+		   }
 		   </script>
 		   
 			<input type="button" name="answer" onclick="showDiv('cestparti')">C'est parti!</input>
@@ -120,10 +125,11 @@
 				<br>
 				
 				<form class="cadran recherche">
-						<label for="ville1">Ville1 <span class="random_letter"></span> :</label>
+				
+						<label for="ville1">Ville commençant par <script>random_letter();</script> :</label>
 							<input id="ville1" type="text" placeholder="Tape le point de départ" autocomplete="off" required ><br>
 
-						<label for="ville2">Ville2:</label>
+						<label for="ville2">Ville commençant par <script>random_letter();</script> :</label>
 							<input id="ville2" type="text" placeholder="Tape ta destination" autocomplete="off" required ><br>
 
 					    	</div> <!-- div controls-->
