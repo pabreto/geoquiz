@@ -1,147 +1,68 @@
+function showDiv(toggle) {
+				var e = document.getElementById(toggle);
+				e.style.display = ((e.style.display!='none') ? 'none' : 'block');
+				var deadline = new Date(Date.parse(new Date()) + 90 * 1000);
+				initializeClock('clockdiv', deadline);
+		}	
+	
+function getTimeRemaining(endtime) {
+					var t = Date.parse(endtime) - Date.parse(new Date());
+					var seconds = Math.floor((t / 1000) % 60);
+					var minutes = Math.floor((t / 1000 / 60) % 60);
+					var hours = Math.floor((t / (1000 * 60 * 60)) % 24);
+					var days = Math.floor(t / (1000 * 60 * 60 * 24));
+					return {
+						'total': t,
+						'days': days,
+						'hours': hours,
+						'minutes': minutes,
+						'seconds': seconds
+					};
+				}
 
-function initMap() {
-	map = new google.maps.Map(document.getElementById('map'), {
-	zoom: 7,
-	center: {lat: 41.591158, lng: 1.520862}
-	 /*   center: {lat: 46.227638, lng: 2.213749}  /*France
-	 center: {lat: 40.463667, lng: -3.74922} /* España
-    center: {lat: 41.591158, lng: 1.520862} zoom: 7/* Catalunya */
-  });
-          new AutocompleteDirectionsHandler(map);
+function initializeClock(id, endtime) {
+					var clock = document.getElementById(id);
+					var daysSpan = clock.querySelector('.days');
+					var hoursSpan = clock.querySelector('.hours');
+					var minutesSpan = clock.querySelector('.minutes');
+					var secondsSpan = clock.querySelector('.seconds');
 
-}
-     function AutocompleteDirectionsHandler(map) {
-        this.map = map;
-        this.originPlaceId = null;
-        this.destinationPlaceId = null;
-        this.travelMode = 'WALKING';
-        var originInput = document.getElementById('departure');
-        var destinationInput = document.getElementById('arrival');
-        var modeSelector = document.getElementById('mode-selector');
-        this.directionsService = new google.maps.DirectionsService;
-        this.directionsDisplay = new google.maps.DirectionsRenderer;
-        this.directionsDisplay.setMap(map);
+					function updateClock() {
+						var t = getTimeRemaining(endtime);
 
-        var originAutocomplete = new google.maps.places.Autocomplete(
-            originInput);
-        var destinationAutocomplete = new google.maps.places.Autocomplete(
-            destinationInput);
+						daysSpan.innerHTML = t.days;
+						hoursSpan.innerHTML = ('0' + t.hours).slice(-2);
+						minutesSpan.innerHTML = ('0' + t.minutes).slice(-2);
+						secondsSpan.innerHTML = ('0' + t.seconds).slice(-2);
 
-        this.setupClickListener('changemode-walking', 'WALKING');
-        this.setupClickListener('changemode-transit', 'TRANSIT');
-        this.setupClickListener('changemode-driving', 'DRIVING');
+						if (t.total <= 0) {
+								clearInterval(timeinterval);
+						}
+					}
 
-        this.setupPlaceChangedListener(originAutocomplete, 'ORIG');
-        this.setupPlaceChangedListener(destinationAutocomplete, 'DEST');
+					updateClock();
+					var timeinterval = setInterval(updateClock, 1000);
+				}
 
- }
-
-      AutocompleteDirectionsHandler.prototype.setupClickListener = function(id, mode) {
-        var radioButton = document.getElementById(id);
-        var me = this;
-        radioButton.addEventListener('click', function() {
-          me.travelMode = mode;
-          me.route();
-        });
-      };
-
-      AutocompleteDirectionsHandler.prototype.setupPlaceChangedListener = function(autocomplete, mode) {
-        var me = this;
-        autocomplete.bindTo('bounds', this.map);
-        autocomplete.addListener('place_changed', function() {
-          var place = autocomplete.getPlace();
-          if (!place.place_id) {
-            window.alert("Please select an option from the dropdown list.");
-            return;
-          }
-          if (mode === 'ORIG') {
-            me.originPlaceId = place.place_id;
-          } else {
-            me.destinationPlaceId = place.place_id;
-          }
-          me.route();
-        });
-
-      };
-
-      AutocompleteDirectionsHandler.prototype.route = function() {
-        if (!this.originPlaceId || !this.destinationPlaceId) {
-          return;
-        }
-        var me = this;
-		var waypoints = new Array();
-			waypoints[0] = new google.maps.LatLng(41.591158,1.520862); 
-			waypoints[1] = new google.maps.LatLng(46.227638,2.213749); 
-        this.directionsService.route({
-          origin: {'placeId': this.originPlaceId},
-          destination: {'placeId': this.destinationPlaceId},
-/*		  waypoints:  [{location:waypoints[0]},
-		  {location:waypoints[1]}],
-		  optimizeWaypoints: true,
-*/
-          travelMode: this.travelMode
-        }, function(response, status) {
-          if (status === 'OK') {
-            me.directionsDisplay.setDirections(response);
-          } else {
-            window.alert('Directions request failed due to ' + status);
-          }
-        });
-      };
-
-
-
-  function calculateAndDisplayRoute(directionsService, directionsDisplay, autocomplete, autocomplete_arrival) {
-  directionsService.route({
-    origin: departure,
-    destination: arrival,
-    travelMode: google.maps.TravelMode.DRIVING
-  }, function(response, status) {
-    if (status == google.maps.DirectionsStatus.OK) {
-      directionsDisplay.setDirections(response);
-    } else {
-      window.alert('Directions request failed due to ' + status);
-    }
-  });
-}
-
-function loadXMLDoc() {
-  var xmlhttp = new XMLHttpRequest();
-  xmlhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-      myFunction(this);
-    }
-  };
-//  xmlhttp.open("GET", xml, true);
-  xmlhttp.open("GET", "../Docs/whc-fr.xml", true);
-
-  xmlhttp.send();
-}
-
-function myFunction(xml) {
-//  var x, i, xmlDoc, txt;
-  var lon_musee, lat_musee, i, xmlDoc, txt;
-  xmlDoc = xml.responseXML;
-  txt = "";
-
-//  x = xmlDoc.getElementsByTagName("longitude");
-  lat_musee = xmlDoc.getElementsByTagName("latitude");
-  lon_musee = xmlDoc.getElementsByTagName("longitude");
-//  for (i = 0; i< lon_musee.length; i++) {
-  for (i = 0; 0; i++) {
-//	  txt += lat_musee[i].childNodes[0].nodeValue + "<br>"+ lat_musee[i].childNodes[0].nodeValue;
-//      latLng = new google.maps.LatLng(lat_musee[i],lon_musee[i]);
-//      latLng = new google.maps.LatLng(41.591158,1.520862);
-	  var myLatLng = {lat: -25.363, lng: 131.044};
-
-      marker = new google.maps.Marker({
-//           position: latLng,
-           position: myLatLng,
-            setMap: map
-          });  
- }
-//  document.getElementById("demo").innerHTML = txt;
-}
-
-
- //     
+				
+function random_letter(id){
+				let letter = String.fromCharCode(Math.floor((Math.random() * 25) + 65));
+				document.write(letter);
+		   }
+		   
+//			function initMap() {
+//				map = new google.maps.Map(document.getElementById('map'), {
+//					zoom: 7,
+//					center: {lat: 41.591158, lng: 1.520862}
+//				};
+//			}
+			
+	//	    function get_distance(ville1, ville2) {
+	//			dlon = lon2 - lon1 
+	//			dlat = lat2 - lat1 
+	//			a = (sin(dlat/2))^2 + cos(lat1) * cos(lat2) * (sin(dlon/2))^2 
+	//			c = 2 * atan2( sqrt(a), sqrt(1-a) ) 
+	//			d = R * c (where R is the radius of the Earth)
+	//	   }
+	
+	
