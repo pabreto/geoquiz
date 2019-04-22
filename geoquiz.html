@@ -85,7 +85,9 @@
 				document.write(letter);
 		   }
 		   
-		   function get_distance(ville1, ville2) {
+		   function get_distance() {
+				var originInput = document.getElementById('ville1');
+				var destinationInput = document.getElementById('ville2');
 				dlon = lon2 - lon1 
 				dlat = lat2 - lat1 
 				a = (sin(dlat/2))^2 + cos(lat1) * cos(lat2) * (sin(dlon/2))^2 
@@ -124,7 +126,7 @@
 				<br>
 				<br>
 				
-				<form class="cadran recherche">
+				<div id="input_cities">
 				
 						<label for="ville1">Ville commençant par <script>random_letter();</script> :</label>
 							<input id="ville1" type="text" placeholder="Tape le point de départ" autocomplete="off" required ><br>
@@ -132,18 +134,11 @@
 						<label for="ville2">Ville commençant par <script>random_letter();</script> :</label>
 							<input id="ville2" type="text" placeholder="Tape ta destination" autocomplete="off" required ><br>
 
-					    	</div> <!-- div controls-->
-	</form> <!-- form cadran recherche-->
-				
+				</div> <!-- div controls-->
 
-				</section>
-
-				<section>
-					<div id="score"></div>
-						<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD-DclMWk7HxK6EFs5ema2f5zJdpUh_DHk&libraries=places&callback=initMap"
-						async defer></script>
-				</section>
-		</div>
+				<div id="score"></div>
+		
+			</div>
 
    		</main>
 	</body>
