@@ -21,7 +21,7 @@
     </style>
 	</head>
 
-	<body>
+	<body onload="initialize">
 		<div class="contenedor">
 			<header>
 				<h1>Geoquiz</h1>
@@ -30,23 +30,15 @@
 
 		  </header>
 		  <main class="contenido-principal" role="main">
-		     
+
 			<input type="button" name="answer" onclick="showDiv('cestparti')">C'est parti!</input>
 
 			<div id="cestparti" style="display:none;" class="answer_list" >
 				<div id="clockdiv">
-				
-				<!--		-->							
 
-					<div id="days">
-						<span class="days"></span>
-						<div class="smalltext">Days</div>
-					</div>
-					<div id="hours">
-						<span class="hours"></span>
-						<div class="smalltext">Hours</div>
-					</div>
-					
+				<!--
+
+-->
 					<div id="minutes">
 						<span class="minutes"></span>
 						<div class="smalltext">Minute</div>
@@ -55,27 +47,37 @@
 						<span class="seconds"></span>
 						<div class="smalltext">Seconds</div>
 					</div>
-					
+
 					<br>
 					<br>
 					<br>
-					
+
 				</div>
-				
-				
-				
+
+
+
 				<form class="cadran recherche">
-				
-						<label for="ville1">Ville commençant par <script>random_letter();</script>:</label>
-							<input id="ville1" type="text" placeholder="Tape le point de départ" autocomplete="off" required ><br>
+   					<label for="ville1">Ville commençant par <script>random_letter();</script>:</label>
+					  <input id="ville1" type="textbox" value="">
+					  <input type="button" value="Encode" onclick="codeAddress()">
+					  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCUbPpud9--ntgyebnodAvmkNs5FzKp83E&libraries=places&callback=initialize"
+					  async defer></script>
 
+					<br>
+					<label for="ville2">Ville commençant par <script>random_letter();</script>:</label>
+					<input id="ville2" type="textbox" value="">
+					<input type="button" value="Encode" onclick="codeAddress()">
+					async defer></script>
+
+<!--
 						<label for="ville2">Ville commençant par <script>random_letter();</script>:</label>
-							<input id="ville2" type="text" placeholder="Tape ta destination" autocomplete="off" required ><br>
-
+							<input id="ville2" type="text" placeholder="Tape ta destination"><br>
+							<input type="button" value="Valider ville 2" onclick="codeAddress()">
+-->
 					    	</div> <!-- div controls-->
 				</form> <!-- form cadran recherche-->
 
-						
+
 				</div>
 			</div>
 

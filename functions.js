@@ -3,8 +3,8 @@ function showDiv(toggle) {
 				e.style.display = ((e.style.display!='none') ? 'none' : 'block');
 				var deadline = new Date(Date.parse(new Date()) + 90 * 1000);
 				initializeClock('clockdiv', deadline);
-		}	
-	
+		}
+
 function getTimeRemaining(endtime) {
 					var t = Date.parse(endtime) - Date.parse(new Date());
 					var seconds = Math.floor((t / 1000) % 60);
@@ -22,16 +22,12 @@ function getTimeRemaining(endtime) {
 
 function initializeClock(id, endtime) {
 					var clock = document.getElementById(id);
-					var daysSpan = clock.querySelector('.days');
-					var hoursSpan = clock.querySelector('.hours');
 					var minutesSpan = clock.querySelector('.minutes');
 					var secondsSpan = clock.querySelector('.seconds');
 
 					function updateClock() {
 						var t = getTimeRemaining(endtime);
 
-						daysSpan.innerHTML = t.days;
-						hoursSpan.innerHTML = ('0' + t.hours).slice(-2);
 						minutesSpan.innerHTML = ('0' + t.minutes).slice(-2);
 						secondsSpan.innerHTML = ('0' + t.seconds).slice(-2);
 
@@ -44,25 +40,42 @@ function initializeClock(id, endtime) {
 					var timeinterval = setInterval(updateClock, 1000);
 				}
 
-				
+
 function random_letter(id){
 				let letter = String.fromCharCode(Math.floor((Math.random() * 25) + 65));
 				document.write(letter);
-		   }
-		   
-//			function initMap() {
-//				map = new google.maps.Map(document.getElementById('map'), {
-//					zoom: 7,
-//					center: {lat: 41.591158, lng: 1.520862}
-//				};
-//			}
-			
+}
+
+function initialize() {
+		     geocoder = new google.maps.Geocoder();
+		     var latlng = new google.maps.LatLng(-34.397, 150.644);
+		     var mapOptions = {
+		       zoom: 8,
+		       center: latlng
+		     }
+		     map = new google.maps.Map(document.getElementById('map'), mapOptions);
+ }
+
+function codeAddress() {
+   var address = document.getElementById('address').value;
+		     geocoder.geocode( { 'address': address}, function(results, status) {
+		       if (status == 'OK') {
+		         map.setCenter(results[0].geometry.location);
+		         var marker = new google.maps.Marker({
+		             map: map,
+		             position: results[0].geometry.location
+		         });
+		       } else {
+		         alert('Geocode was not successful for the following reason: ' + status);
+		       }
+		     });
+}
+
+
 	//	    function get_distance(ville1, ville2) {
-	//			dlon = lon2 - lon1 
-	//			dlat = lat2 - lat1 
-	//			a = (sin(dlat/2))^2 + cos(lat1) * cos(lat2) * (sin(dlon/2))^2 
-	//			c = 2 * atan2( sqrt(a), sqrt(1-a) ) 
+	//			dlon = lon2 - lon1
+	//			dlat = lat2 - lat1
+	//			a = (sin(dlat/2))^2 + cos(lat1) * cos(lat2) * (sin(dlon/2))^2
+	//			c = 2 * atan2( sqrt(a), sqrt(1-a) )
 	//			d = R * c (where R is the radius of the Earth)
 	//	   }
-	
-	
