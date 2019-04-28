@@ -6,6 +6,7 @@
 		<meta name="description" content="jeu géographie" >
 		<meta name="viewport" content="initial-scale=1.0">
 		<link rel="stylesheet" href="geoquiz.css" />
+		<link rel="icon" type="image/png/jpg" href="Pics/fondo-maleta.jpg"/>
 		<script type="text/javascript" src="geoquiz.js"></script>
 		<style>
       html, body {
@@ -29,7 +30,7 @@
 		  </header>
 		  <main class="contenido-principal" role="main">
 
-			<input type="button" name="answer" onclick="showDiv('cestparti')"  onload="initialize" value="C'est parti!"></input>
+			<input type="button" name="answer" onclick="showDiv('cestparti')"  onload="initialize" value="C'est parti!" this.onclick=null></input>
 
 			<div id="cestparti" style="display:none;" class="answer_list" >
 				<div id="clockdiv">
@@ -64,7 +65,7 @@
 
 					<div>
 					  <input id="address1" type="textbox" value="">
-					  <input type="button" value="Valider" onclick="loadcity(lettre1)">
+					  <input type="button" value="Valider" onclick="loadcity(lettre1);">
 					  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCUbPpud9--ntgyebnodAvmkNs5FzKp83E&libraries=places&callback=initialize"
 					  async defer></script>
 					</div>
