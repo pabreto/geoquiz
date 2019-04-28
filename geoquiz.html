@@ -21,17 +21,17 @@
     </style>
 	</head>
 
-	<body onload="initialize">
+	<body>
 		<div class="contenedor">
 			<header>
 				<h1>Geoquiz</h1>
-				<a href="#">Les règles</a>
+				<a >Les règles</a>
 					<p> 2 lettres au hasard, trouve 2 villes commençant par ces lettres, plus elles sont proches, plus ça fait de points. </p>
 
 		  </header>
 		  <main class="contenido-principal" role="main">
 
-			<input type="button" name="answer" onclick="showDiv('cestparti')">C'est parti!</input>
+			<input type="button" name="answer" onclick="showDiv('cestparti')"  onload="initialize" value="C'est parti!"></input>
 
 			<div id="cestparti" style="display:none;" class="answer_list" >
 				<div id="clockdiv">
@@ -39,16 +39,18 @@
 				<!--
 
 -->
-					<div id="minutes">
-						<span class="minutes"></span>
-						<div class="smalltext">Minute</div>
-					</div>
-					<div id="secondes">
+<br>
+
+						<div id="minutes">
+							<span class="minutes" ></span>
+							<div class="smalltext" margin: auto;>Minute</div>
+						</div>
+
+						<div id="secondes">
 						<span class="seconds"></span>
 						<div class="smalltext">Seconds</div>
 					</div>
 
-					<br>
 					<br>
 					<br>
 
@@ -56,18 +58,29 @@
 
 
 
+
 				<form class="cadran recherche">
-   					<label for="ville1">Ville commençant par <script>random_letter();</script>:</label>
-					  <input id="ville1" type="textbox" value="">
-					  <input type="button" value="Encode" onclick="codeAddress()">
-					  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCUbPpud9--ntgyebnodAvmkNs5FzKp83E&libraries=places&callback=initialize"
-					  async defer></script>
+   				<!--	<label for="ville1">-->
+							Ville commençant par <script>random_letter();</script>:
+					<!--	</label>-->
+
+					  <input id="adress" type="textbox" value="">
+					  <input type="button" value="Valider" onclick="codeAddress()">
+					  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCUbPpud9--ntgyebnodAvmkNs5FzKp83E&libraries=places&callback=initialize" async defer></script>
 
 					<br>
+					<br>
+
+
 					<label for="ville2">Ville commençant par <script>random_letter();</script>:</label>
 					<input id="ville2" type="textbox" value="">
-					<input type="button" value="Encode" onclick="codeAddress()">
-					async defer></script>
+					<input type="button" value="Valider" onclick="codeAddress()">
+
+					<br>
+					<br>
+
+
+					<div id="map" style="width:500px;height:380px;"></div>
 
 <!--
 						<label for="ville2">Ville commençant par <script>random_letter();</script>:</label>
@@ -75,8 +88,8 @@
 							<input type="button" value="Valider ville 2" onclick="codeAddress()">
 -->
 					    	</div> <!-- div controls-->
-				</form> <!-- form cadran recherche-->
 
+				</form> <!-- form cadran recherche-->
 
 				</div>
 			</div>
