@@ -37,22 +37,22 @@
 				<!--
 
 -->
-<br>
+						<br>
 
 						<div id="minutes">
 							<span class="minutes" ></span>
 							<div class="smalltext" margin: auto;>Minute</div>
-						</div>
+						</div id="minutes">
 
 						<div id="secondes">
-						<span class="seconds"></span>
-						<div class="smalltext">Seconds</div>
-					</div>
+							<span class="seconds"></span>
+							<div class="smalltext">Seconds</div>
+						</div id="seconds">
 
 					<br>
 					<br>
 
-				</div>
+				</div id="clockdiv">
 
 
 
@@ -84,7 +84,22 @@
 -->
 					<br>
 					<br>
+					<div id="scorediv">
+						<!--
 
+					-->
+					<div id="score">
+
+							Score: <script>computeScore(); </script>
+							<span class="score" ></span>
+								<div class="smalltext" margin: auto;> </div>
+							</div id="score">
+							<!--
+
+
+					-->
+
+					</div id="scorediv">
 
 					<div id="map" style="width:500px;height:380px;"></div>
 
@@ -99,6 +114,7 @@
 
 				</div>
 			</div>
+
 
    		</main>
 	</body>

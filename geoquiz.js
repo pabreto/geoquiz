@@ -7,26 +7,26 @@ function showDiv(toggle) {
 				initializeClock('clockdiv', deadline);
 		}
 
-function getTimeRemaining(endtime) {
-					var t = Date.parse(endtime) - Date.parse(new Date());
-					var seconds = Math.floor((t / 1000) % 60);
-					var minutes = Math.floor((t / 1000 / 60) % 60);
-					var hours = Math.floor((t / (1000 * 60 * 60)) % 24);
-					var days = Math.floor(t / (1000 * 60 * 60 * 24));
-					return {
-						'total': t,
-						'days': days,
-						'hours': hours,
-						'minutes': minutes,
-						'seconds': seconds
-					};
-				}
 
 function initializeClock(id, endtime) {
 					var clock = document.getElementById(id);
 					var minutesSpan = clock.querySelector('.minutes');
 					var secondsSpan = clock.querySelector('.seconds');
 
+					function getTimeRemaining(endtime) {
+										var t = Date.parse(endtime) - Date.parse(new Date());
+										var seconds = Math.floor((t / 1000) % 60);
+										var minutes = Math.floor((t / 1000 / 60) % 60);
+										var hours = Math.floor((t / (1000 * 60 * 60)) % 24);
+										var days = Math.floor(t / (1000 * 60 * 60 * 24));
+										return {
+											'total': t,
+											'days': days,
+											'hours': hours,
+											'minutes': minutes,
+											'seconds': seconds
+										};
+									}
 					function updateClock() {
 						var t = getTimeRemaining(endtime);
 
@@ -75,14 +75,16 @@ function loadcity(lettre1) {
 	}
 
 	function codeAddress(){
-	alert(address)
   geocoder.geocode( { 'address': address}, function(results, status) {
     if (status == 'OK') {
       map.setCenter(results[0].geometry.location);
       var marker = new google.maps.Marker({
           map: map,
-          position: results[0].geometry.location
+          position: results[0].geometry.location,
+					label: address,
       });
+
+		//	marker.showInfoWindow();
     } else {
       alert('Geocode was not successful for the following reason: ' + status);
     }
@@ -90,12 +92,32 @@ function loadcity(lettre1) {
 }
 }
 
-//google.maps.event.addDomListener(window, 'load', initialize);
+////function getDistanceFromLatLonInKm() {
+  //var R = 6371; // Radius of the earth in km
+//	d=google.maps.geometry.spherical(address.LatLng,)
+//  var dLat = deg2rad(lat2-lat1);  // deg2rad below
+//  var dLon = deg2rad(lon2-lon1);
+//  var a =
+  //  Math.sin(dLat/2) * Math.sin(dLat/2) +
+    //Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) *
+  //  Math.sin(dLon/2) * Math.sin(dLon/2)
+    //;
 
-	//	    function get_distance(ville1, ville2) {
-	//			dlon = lon2 - lon1
-	//			dlat = lat2 - lat1
-	//			a = (sin(dlat/2))^2 + cos(lat1) * cos(lat2) * (sin(dlon/2))^2
-	//			c = 2 * atan2( sqrt(a), sqrt(1-a) )
-	//			d = R * c (where R is the radius of the Earth)
-	//	   }
+//  var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+  //var d = R * c; // Distance in km
+//  return distance;
+
+//}
+
+//function deg2rad(deg) {
+//  return deg * (Math.PI/180)
+//}
+
+function computeScore(){
+	var score= "0" ;
+	document.write(score);
+	return score;
+}
+
+
+//google.maps.event.addDomListener(window, 'load', initialize);

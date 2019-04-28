@@ -17,8 +17,11 @@ function codeAddress() {
       map.setCenter(results[0].geometry.location);
       var marker = new google.maps.Marker({
           map: map,
-          position: results[0].geometry.location
+          position: results[0].geometry.location,
+          label: address
       });
+      locationMarker.showInfoWindow();
+
     } else {
       alert('Geocode was not successful for the following reason: ' + status);
     }
