@@ -5,8 +5,12 @@ function showDiv(toggle) {
 				e.style.display = ((e.style.display!='none') ? 'none' : 'block');
 				var deadline = new Date(Date.parse(new Date()) + 90 * 1000);
 				initializeClock('clockdiv', deadline);
-		}
+}
 
+function hideDiv (toggle) {
+			var e = document.getElementById(toggle);
+		  e.style.display = 'none';
+}
 
 function initializeClock(id, endtime) {
 					var clock = document.getElementById(id);
@@ -35,6 +39,8 @@ function initializeClock(id, endtime) {
 
 						if (t.total <= 0) {
 								clearInterval(timeinterval);
+								alert("Time is over");
+								hideDiv('cestparti')
 						}
 					}
 
@@ -83,7 +89,7 @@ function loadcity(lettre1) {
           position: results[0].geometry.location,
 					label: address,
       });
-			map.results[0].geometry.location(address)
+		//	map.results[0].geometry.location(address)
 
 		//	marker.showInfoWindow();
     } else {
