@@ -55,24 +55,27 @@ function initialize() {
     center:new google.maps.LatLng(0,0),
     zoom:1,
     };
-    var map=new google.maps.Map(document.getElementById("map"), prop);
+		geocoder = new google.maps.Geocoder();
+    map=new google.maps.Map(document.getElementById("map"), prop);
 }
 
-function loadcity() {
-  var address = document.getElementById('address').value;
-	function compare_strings(string1,string2){
+function loadcity(lettre1) {
+  var address = document.getElementById('address1').value;
+	function compare_strings(string1,string2) {
 		var lower_string1 = string1.toLowerCase()
 		var lower_string2 = string2.toLowerCase()
 		return lower_string1.localeCompare(lower_string2)
-		document.write(lower_string1,lower_string2,lower_string1.localeCompare(lower_string2))
+//		document.write(lower_string1,lower_string2,lower_string1.localeCompare(lower_string2))
 	}
 	if( compare_strings(address[0],lettre1) != 0 ){
-		alert("Wrong letter");
+		alert(address +" doesn't start with " + lettre1 + ". Don't cheat!");
 	}
 	else{
 		codeAddress();
 	}
-	function codeAddress(){}
+
+	function codeAddress(){
+	alert(address)
   geocoder.geocode( { 'address': address}, function(results, status) {
     if (status == 'OK') {
       map.setCenter(results[0].geometry.location);
@@ -84,6 +87,7 @@ function loadcity() {
       alert('Geocode was not successful for the following reason: ' + status);
     }
   });
+}
 }
 
 //google.maps.event.addDomListener(window, 'load', initialize);

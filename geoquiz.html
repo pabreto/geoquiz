@@ -63,26 +63,25 @@
 					</label>
 
 					<div>
-					  <input id="address" type="textbox" value="">
-					  <input type="button" value="Valider" onclick="loadcity()">
+					  <input id="address1" type="textbox" value="">
+					  <input type="button" value="Valider" onclick="loadcity(lettre1)">
 					  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCUbPpud9--ntgyebnodAvmkNs5FzKp83E&libraries=places&callback=initialize"
 					  async defer></script>
 					</div>
-					<!--
-
-					  <input id="adress" type="textbox" value="">
-					  <input type="button" value="Valider" onclick="codeAddress()">
-					  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCUbPpud9--ntgyebnodAvmkNs5FzKp83E&libraries=places&callback=initialize" async defer></script>
-					-->
 
 					<br>
 					<br>
 
-
-					<label for="ville2">Ville commençant par <script>random_letter();</script>:</label>
-					<input id="ville2" type="textbox" value="">
-					<input type="button" value="Valider" onclick="codeAddress()">
-
+					<label for="lettre2">
+							Ville commençant par <script>lettre2=random_letter(); </script>:
+					</label>
+					<div>
+						<input id="address2" type="textbox" value="">
+						<input type="button" value="Valider" >
+						<!--
+						<input type="button" value="Valider" onclick="loadcity(address2,lettre2)">
+					</div>
+-->
 					<br>
 					<br>
 
