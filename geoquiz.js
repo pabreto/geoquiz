@@ -83,6 +83,7 @@ function loadcity(lettre1) {
           position: results[0].geometry.location,
 					label: address,
       });
+			map.results[0].geometry.location(address)
 
 		//	marker.showInfoWindow();
     } else {
@@ -114,7 +115,18 @@ function loadcity(lettre1) {
 //}
 
 function computeScore(){
-	var score= "0" ;
+	var score = 0;
+//	geocoder.geocode( { 'address': address}, function(results, status) {
+//    if (status == 'OK') {
+//    var score = map.results[0].geometry.location(address);
+
+		//	marker.showInfoWindow();
+//    } else {
+//      alert('Geocode was not successful for the following reason: ' + status);
+//    }
+//  });
+//	var score = google.maps.geometry.spherical(map.results[0].geometry.location(address),"[0,0]");
+
 	document.write(score);
 	return score;
 }
