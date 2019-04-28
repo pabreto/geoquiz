@@ -1,3 +1,5 @@
+var geocoder;
+
 function showDiv(toggle) {
 				var e = document.getElementById(toggle);
 				e.style.display = ((e.style.display!='none') ? 'none' : 'block');
@@ -42,8 +44,10 @@ function initializeClock(id, endtime) {
 
 
 function random_letter(id){
-				let letter = String.fromCharCode(Math.floor((Math.random() * 25) + 65));
+				letter = String.fromCharCode(Math.floor((Math.random() * 25) + 65));
 				document.write(letter);
+				return letter
+
 }
 
 function initialize() {
@@ -54,8 +58,21 @@ function initialize() {
     var map=new google.maps.Map(document.getElementById("map"), prop);
 }
 
-function codeAddress() {
+function loadcity() {
   var address = document.getElementById('address').value;
+	function compare_strings(string1,string2){
+		var lower_string1 = string1.toLowerCase()
+		var lower_string2 = string2.toLowerCase()
+		return lower_string1.localeCompare(lower_string2)
+		document.write(lower_string1,lower_string2,lower_string1.localeCompare(lower_string2))
+	}
+	if( compare_strings(address[0],lettre1) != 0 ){
+		alert("Wrong letter");
+	}
+	else{
+		codeAddress();
+	}
+	function codeAddress(){}
   geocoder.geocode( { 'address': address}, function(results, status) {
     if (status == 'OK') {
       map.setCenter(results[0].geometry.location);
@@ -68,8 +85,8 @@ function codeAddress() {
     }
   });
 }
+
 //google.maps.event.addDomListener(window, 'load', initialize);
-var geocoder;
 
 	//	    function get_distance(ville1, ville2) {
 	//			dlon = lon2 - lon1

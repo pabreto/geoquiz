@@ -6,12 +6,10 @@
 		<meta name="description" content="jeu géographie" >
 		<meta name="viewport" content="initial-scale=1.0">
 		<link rel="stylesheet" href="geoquiz.css" />
-		<script type="text/javascript" src="functions.js"></script>
+		<script type="text/javascript" src="geoquiz.js"></script>
 		<style>
       html, body {
         height: 100%;
-        margin: 20;
-        padding: 200;
       }
       #map {
         height: 80%;
@@ -60,13 +58,22 @@
 
 
 				<form class="cadran recherche">
-   				<!--	<label for="ville1">-->
-							Ville commençant par <script>random_letter();</script>:
-					<!--	</label>-->
+   				<label for="lettre1">
+							Ville commençant par <script>lettre1=random_letter(); </script>:
+					</label>
+
+					<div>
+					  <input id="address" type="textbox" value="">
+					  <input type="button" value="Valider" onclick="loadcity()">
+					  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCUbPpud9--ntgyebnodAvmkNs5FzKp83E&libraries=places&callback=initialize"
+					  async defer></script>
+					</div>
+					<!--
 
 					  <input id="adress" type="textbox" value="">
 					  <input type="button" value="Valider" onclick="codeAddress()">
 					  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCUbPpud9--ntgyebnodAvmkNs5FzKp83E&libraries=places&callback=initialize" async defer></script>
+					-->
 
 					<br>
 					<br>
