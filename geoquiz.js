@@ -65,8 +65,15 @@ function initialize() {
     map=new google.maps.Map(document.getElementById("map"), prop);
 }
 
-function loadcity(letter) {
-  var address = document.getElementById('address1').value;
+function loadcity(letter,address) {
+//  var address1 = document.getElementById('address1').value;
+//	var address2 = document.getElementById('address2').value;
+var address = document.getElementById(address).value;
+
+//	alert(address1);
+//	alert(address2);
+alert(address);
+
 	function compare_strings(string1,string2) {
 		var lower_string1 = string1.toLowerCase()
 		var lower_string2 = string2.toLowerCase()
