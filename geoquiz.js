@@ -49,7 +49,7 @@ function initializeClock(id, endtime) {
 				}
 
 
-function random_letter(id){
+function random_letter(letter){
 				letter = String.fromCharCode(Math.floor((Math.random() * 25) + 65));
 				document.write(letter);
 				return letter
@@ -65,7 +65,7 @@ function initialize() {
     map=new google.maps.Map(document.getElementById("map"), prop);
 }
 
-function loadcity(lettre1) {
+function loadcity(letter) {
   var address = document.getElementById('address1').value;
 	function compare_strings(string1,string2) {
 		var lower_string1 = string1.toLowerCase()
@@ -73,8 +73,8 @@ function loadcity(lettre1) {
 		return lower_string1.localeCompare(lower_string2)
 //		document.write(lower_string1,lower_string2,lower_string1.localeCompare(lower_string2))
 	}
-	if( compare_strings(address[0],lettre1) != 0 ){
-		alert(address +" doesn't start with " + lettre1 + ". Don't cheat!");
+	if( compare_strings(address[0],letter) != 0 ){
+		alert(address +" doesn't start with " + letter + ". Don't cheat!");
 	}
 	else{
 		codeAddress();
